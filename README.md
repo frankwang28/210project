@@ -9,3 +9,9 @@ Intended features:
 
 This game can be played by anyone who wants to. This project is of interest to me as I enjoy playing various games and
 creating a game would be interesting insight into the process in creating such games.
+
+#### User Stories
+As a user, I want to be able to move the controllable object up and down.
+As a user, I want to be able to have obstacles spawn.
+As a user, I want to be able to start the game.
+As a user, I want to be able to lose upon colliding with an obstacle.
