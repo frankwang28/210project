@@ -4,7 +4,7 @@ package model;
 public class Obstacle {
     public int height = 48;
     public int width = 48;
-    public int dx = -4;
+    public int dx = -40;
 
     public int posX;
     public int posY;
@@ -24,10 +24,11 @@ public class Obstacle {
     public void moveObstacle() {
         posX = posX + deltaX;
     }
-
+   /*
     // EFFECTS: checks and deletes an obstacle that is behind the player
     public void checkAndDelete() {
 
     }
+   */
 
 }
