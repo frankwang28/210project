@@ -2,9 +2,9 @@ package model;
 
 // represents an obstacle
 public class Obstacle {
-    public int height = 48;
-    public int width = 48;
-    public int dx = -40;
+    public static int height = 48;
+    public static int width = 48;
+    public static int dx = -40;
 
     public int posX;
     public int posY;

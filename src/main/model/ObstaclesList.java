@@ -2,6 +2,7 @@ package model;
 
 import java.util.Random;
 import java.util.*;
+import java.awt.geom.RectangularShape;
 
 // represents the list of obstacles active in the game
 public class ObstaclesList {
@@ -24,10 +25,16 @@ public class ObstaclesList {
     // EFFECTS: checks for collision of an obstacle and the player
     public static boolean checkCollide(Player player) {
         for (Obstacle obj : obstacleList) {
-            if (((obj.posY - obj.height - player.height) < player.ypos)
-                    && (player.ypos < (obj.posY + obj.height + player.height))
-                    && ((obj.posX - obj.width - player.width) < Player.XPOS)
-                    && (Player.XPOS < (obj.posX + obj.width + player.width))
+            int top = obj.posY - Obstacle.height / 2;
+            int bot = obj.posY + Obstacle.height / 2;
+            int lef = obj.posX - Obstacle.width / 2;
+            int rig = obj.posX + Obstacle.width / 2;
+            int playerTop = player.ypos - player.height / 2;
+            int playerBot = player.ypos + player.height / 2;
+            int playerLef = Player.XPOS - player.width / 2;
+            int playerRig = Player.XPOS + player.width / 2;
+            if ((((top > playerTop) && (playerBot > top)) || ((bot > playerTop) && (playerBot > bot)))
+                    && (((lef > playerLef) && (playerRig > lef)) || ((rig > playerLef) && (playerRig > rig)))
             ) {
                 return true;
             }
