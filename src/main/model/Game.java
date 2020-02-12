@@ -7,7 +7,6 @@ import ui.GameUI;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Scanner;
 
 // Represents a game having a boolean on whether the game is active, a player, and a list of obstacles
 public class Game {
@@ -59,14 +58,14 @@ public class Game {
         player.move();
         obstaclesList.update();
         if (checkCollision()) {
-            System.out.println("Game Over!");
+            System.out.println("You have collided! Game over! Enter any key to exit.");
             activeGame = false;
         }
     }
 
 /*
     // creates a timer that calls update every time
-    // EFFECTS: intializes a timer that updates game each TICK
+    // EFFECTS: initializes a timer that updates game each TICK
     private void addTimer() {
         Timer timer = new Timer(TICK, new ActionListener() {
             @Override
@@ -86,7 +85,7 @@ public class Game {
 */
 
     // creates a timer that calls update every time
-    // EFFECTS: intializes a timer that updates game each TICK
+    // EFFECTS: initialises a timer that updates game each TICK
 
     public static void timer(int i) {
         timer = new Timer();

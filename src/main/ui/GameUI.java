@@ -7,6 +7,8 @@ import java.util.Scanner;
 // the panel in which the game is rendered
 public class GameUI {
 
+    // MODIFIES: this
+    // EFFECTS: processes start and user input
     public static void start() {
         Scanner input = new Scanner(System.in);
         String command;
@@ -31,7 +33,6 @@ public class GameUI {
                 Game.player.moveDirection = 0;
             }
         }
-
-
     }
+
 }
