@@ -17,7 +17,9 @@ public class ObstaclesList {
 
     // EFFECTS: adds an obstacle into the list
     public void addObstacle() {
-        obstacleList.add(new Obstacle(Game.WIDTH, rnd.nextInt(Game.HEIGHT + 1)));
+        Obstacle temp = new Obstacle(Game.WIDTH, rnd.nextInt(Game.HEIGHT + 1));
+        obstacleList.add(temp);
+        System.out.println("Added an obstacle at " + temp.posX + " , " + temp.posY);
     }
 
     public static boolean checkCollide(Player player) {

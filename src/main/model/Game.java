@@ -1,8 +1,10 @@
 package model;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+// import javax.swing.*;
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 // Represents a game having a boolean on whether the game is active, a player, and a list of obstacles
 public class Game {
@@ -14,10 +16,11 @@ public class Game {
     private boolean activeGame = false;           // whether the game is active or not
     private Player player;                // the object that the player controls
     private ObstaclesList obstaclesList;  // the list of obstacles that are currently in the game
-    private Timer timer;                  // creates a new timer
 
     public int obstacleCounter;           // counts the amount of ticks before a new obstacle is created
     public static final int COUNTER = 10;
+
+    Timer timer;
 
     // Creates a game
     // EFFECTS: creates a player with an obstacle on the left side of the screen
@@ -29,11 +32,13 @@ public class Game {
     // MODIFIES: this
     // EFFECTS: resets the game to a state where there is only the player and an obstacle
     public void createNewGame() {
+
         activeGame = true;
         player = new Player(HEIGHT / 2);
         obstaclesList = new ObstaclesList();
+        obstaclesList.addObstacle();
         obstacleCounter = COUNTER;
-        timerStart();
+        timer(TICK);
     }
 
     // checks for collision between the player and an obstacle
@@ -59,12 +64,13 @@ public class Game {
         }
     }
 
+/*
     // creates a timer that calls update every time
     // EFFECTS: intializes a timer that updates game each TICK
     private void addTimer() {
-        timer = new Timer(TICK, new ActionListener() {
+        Timer timer = new Timer(TICK, new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                 update();
                 obstacleCounter--;
                 if (obstacleCounter == 0) {
@@ -76,17 +82,30 @@ public class Game {
                 }
             }
         });
+    }
+*/
 
+    // creates a timer that calls update every time
+    // EFFECTS: intializes a timer that updates game each TICK
+
+    public void timer(int i) {
+        timer = new Timer();
+        timer.schedule(new TimedTask(),0, i);
     }
 
-    // EFFECTS: starts a timer
-    private void timerStart() {
-        addTimer();
-        timer.start();
+    class TimedTask extends TimerTask {
+        @Override
+        public void run() {
+            update();
+            obstacleCounter--;
+            if (obstacleCounter == 0) {
+                obstaclesList.addObstacle();
+                obstacleCounter = COUNTER;
+            }
+            if (activeGame == false) {
+                timer.cancel();
+            }
+        }
     }
 
-    // EFFECTS: stops the timer
-    private void timerStop() {
-        timer.stop();
-    }
 }
