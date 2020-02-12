@@ -50,10 +50,5 @@ public class ObstaclesList {
         }
     }
 
-    // EFFECTS: prints all the obstacles
-    public void printAll() {
-        for (Obstacle obstacle : obstacleList) {
-            System.out.println("There is an obstacle at " + obstacle.posX + " , " + obstacle.posY);
-        }
-    }
+
 }

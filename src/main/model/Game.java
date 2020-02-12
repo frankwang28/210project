@@ -13,7 +13,7 @@ public class Game {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
 
-    private static final int TICK = 1000; // game ticks ever 1000ms (currently)
+    public static final int TICK = 1000; // game ticks ever 1000ms (currently)
 
     public static boolean activeGame = false;           // whether the game is active or not
     public static Player player;                // the object that the player controls
@@ -42,6 +42,7 @@ public class Game {
         obstaclesList.addObstacle();
         obstacleCounter = COUNTER;
         timer(TICK);
+        GameUI.one(TICK);
     }
 
     // checks for collision between the player and an obstacle
@@ -58,7 +59,6 @@ public class Game {
         player.move();
         obstaclesList.update();
         if (checkCollision()) {
-            System.out.println("You have collided! Game over! Enter any key to exit.");
             activeGame = false;
         }
     }
@@ -100,7 +100,6 @@ public class Game {
             obstacleCounter--;
             if (obstacleCounter == 0) {
                 obstaclesList.addObstacle();
-                obstaclesList.printAll();
                 obstacleCounter = COUNTER;
             }
             if (!activeGame) {

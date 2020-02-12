@@ -37,9 +37,4 @@ class GameTest {
         assertEquals(testGame.player.ypos, 400);
         assertFalse(testGame.obstaclesList.obstacleList.get(0).posX == Game.WIDTH);
     }
-
-    @Test
-    void testTimer() {
-
-    }
 }

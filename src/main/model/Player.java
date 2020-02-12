@@ -34,7 +34,6 @@ public class Player {
     public void move() {
         this.ypos += (dy * moveDirection);
         stayInBounds();
-        System.out.println("Player is now at " + XPOS + " , " + ypos); // temp
     }
 
 }
