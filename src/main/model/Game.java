@@ -69,6 +69,7 @@ public class Game {
                 obstacleCounter--;
                 if (obstacleCounter == 0) {
                     obstaclesList.addObstacle();
+                    obstacleCounter = COUNTER;
                 }
                 if (activeGame == false) {
                     timerStop();
