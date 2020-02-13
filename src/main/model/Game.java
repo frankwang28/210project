@@ -24,12 +24,6 @@ public class Game {
 
     static Timer timer;
 
-    // Creates a game
-    // EFFECTS: creates a player with an obstacle on the left side of the screen
-    public Game() {
-        GameUI.start();
-    }
-
 
     // Resets everything in the game
     // MODIFIES: this
@@ -41,7 +35,7 @@ public class Game {
         obstaclesList = new ObstaclesList();
         obstaclesList.addObstacle();
         obstacleCounter = COUNTER;
-        timer(TICK);
+        // timer(TICK);
         GameUI.one(TICK);
     }
 
@@ -63,49 +57,5 @@ public class Game {
         }
     }
 
-/*
-    // creates a timer that calls update every time
-    // EFFECTS: initializes a timer that updates game each TICK
-    private void addTimer() {
-        Timer timer = new Timer(TICK, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                update();
-                obstacleCounter--;
-                if (obstacleCounter == 0) {
-                    obstaclesList.addObstacle();
-                    obstacleCounter = COUNTER;
-                }
-                if (activeGame == false) {
-                    timerStop();
-                }
-            }
-        });
-    }
-*/
-
-    // creates a timer that calls update every time
-    // EFFECTS: initialises a timer that updates game each TICK
-
-    public static void timer(int i) {
-        timer = new Timer();
-        timer.schedule(new TimedTask(),0, i);
-    }
-
-    // is the task that is called within the timer
-    static class TimedTask extends TimerTask {
-        @Override
-        public void run() {
-            update();
-            obstacleCounter--;
-            if (obstacleCounter == 0) {
-                obstaclesList.addObstacle();
-                obstacleCounter = COUNTER;
-            }
-            if (!activeGame) {
-                timer.cancel();
-            }
-        }
-    }
 
 }

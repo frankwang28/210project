@@ -54,6 +54,14 @@ public class GameUI {
     static class OneTask extends TimerTask {
         @Override
         public void run() {
+
+            Game.update();
+            Game.obstacleCounter--;
+            if (Game.obstacleCounter == 0) {
+                Game.obstaclesList.addObstacle();
+                Game.obstacleCounter = Game.COUNTER;
+            }
+
             System.out.println("Player is now at " + Game.player.XPOS + " , " + Game.player.ypos); // temp
             for (Obstacle obstacle : Game.obstaclesList.obstacleList) {
                 System.out.println("There is an obstacle at " + obstacle.posX + " , " + obstacle.posY);

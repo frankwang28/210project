@@ -35,6 +35,13 @@ class GameTest {
         testGame.player.moveDirection = 0;
         testGame.player.move();
         assertEquals(testGame.player.ypos, 400);
-        assertFalse(testGame.obstaclesList.obstacleList.get(0).posX == Game.WIDTH);
+        Player testPlayer = new Player(400);
+        testGame.obstaclesList.addObstacle();
+        testGame.obstaclesList.obstacleList.get(0).posY = 400;
+        testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2;
+        assertTrue(testGame.obstaclesList.checkCollide(testPlayer));
+        testGame.update();
+        assertFalse(testGame.activeGame);
     }
+
 }
