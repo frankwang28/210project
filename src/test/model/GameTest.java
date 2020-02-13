@@ -12,6 +12,17 @@ class GameTest {
     }
 
     @Test
+    void testGame() {
+        testGame = new Game();
+        assertEquals(testGame.WIDTH, 1200);
+        assertEquals(testGame.HEIGHT, 800);
+        assertEquals(testGame.TICK, 1000);
+        assertEquals(testGame.COUNTER, Game.COUNTER);
+        assertTrue(testGame.activeGame);
+
+    }
+
+    @Test
     void testConstructor() {
         assertTrue(testGame.activeGame);
         assertEquals(testGame.player.ypos, 400);
