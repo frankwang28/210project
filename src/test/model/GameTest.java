@@ -18,7 +18,7 @@ class GameTest {
         assertEquals(testGame.HEIGHT, 800);
         assertEquals(testGame.TICK, 1000);
         assertEquals(testGame.COUNTER, Game.COUNTER);
-        assertTrue(testGame.activeGame);
+        assertFalse(testGame.activeGame);
 
     }
 

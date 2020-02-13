@@ -25,6 +25,12 @@ public class Game {
     static Timer timer;
 
 
+    // EFFECTS: instantiates the game
+    public Game() {
+        activeGame = false;
+    }
+
+
     // Resets everything in the game
     // MODIFIES: this
     // EFFECTS: resets the game to a state where there is only the player and an obstacle
