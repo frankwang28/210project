@@ -15,3 +15,5 @@ creating a game would be interesting insight into the process in creating such g
 - As a user, I want to be able to have obstacles spawn.
 - As a user, I want to be able to start the game.
 - As a user, I want to be able to lose upon colliding with an obstacle.
+- As a user, I want to be able to have my high score automatically saved upon losing.
+- As a user, I want to be able to see my high score at the start and end of games. 
