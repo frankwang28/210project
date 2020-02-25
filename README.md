@@ -17,4 +17,3 @@ creating a game would be interesting insight into the process in creating such g
 - As a user, I want to be able to lose upon colliding with an obstacle.
 - As a user, I want to be able to have my high score automatically saved upon losing.
 - As a user, I want to be able to see my high score at the start and end of games. 
-- As a user, I want to be able to have a way to reset my high score. 

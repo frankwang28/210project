@@ -14,7 +14,7 @@ import java.util.TimerTask;
 
 // Represents a game having a boolean on whether the game is active, a player, and a list of obstacles
 public class Game {
-    public static String SCORE_FILE;
+    public static String SCORE_FILE = "./data/highScore";
     public static String highScore;
     public static int score;
 
