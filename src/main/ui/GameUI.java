@@ -2,7 +2,13 @@ package ui;
 
 import model.Game;
 import model.Obstacle;
+import persistence.LoadScore;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import java.util.Timer;
@@ -13,13 +19,14 @@ public class GameUI {
 
     static Timer one;
     static Timer ten;
+    private static String command;
 
     // MODIFIES: this
     // EFFECTS: processes start and user input
     public static void start() {
         Scanner input = new Scanner(System.in);
-        String command;
         System.out.println("Enter 's' to start game! Once started, press u for up, d for down, and n for nothing.");
+        System.out.println("High Score: " + Game.highScore);
         while (!Game.activeGame) {
             command = input.next();
             if (command.equals("s")) {
@@ -68,9 +75,34 @@ public class GameUI {
             }
             if (!Game.activeGame) {
                 System.out.println("You have collided! Game over! Enter any key to exit.");
+                System.out.println("Your score was: " + Integer.toString(Game.score));
+                try {
+                    Game.testScore();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 one.cancel();
             }
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  gets the score from SCORE_FILE
+
+    public static void loadScore() {
+        try {
+            Game.highScore = LoadScore.readScore(new File(Game.SCORE_FILE));
+        } catch (IOException e) {
+            init();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes accounts
+    public static void init() {
+        Game.highScore = "0";
     }
 
 }

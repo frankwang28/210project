@@ -3,13 +3,24 @@ package model;
 // import javax.swing.*;
 // import java.awt.event.ActionEvent;
 // import java.awt.event.ActionListener;
+import persistence.LoadScore;
+import persistence.SaveScore;
 import ui.GameUI;
 
+import java.io.*;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 // Represents a game having a boolean on whether the game is active, a player, and a list of obstacles
 public class Game {
+    public static String SCORE_FILE;
+    public static String highScore;
+    public static int score;
+
+    public static SaveScore saveScore;
+    public static SaveScore.Score newHighScore;
+
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
 
@@ -36,8 +47,10 @@ public class Game {
     // EFFECTS: resets the game to a state where there is only the player and an obstacle
 
     public static void createNewGame() {
+        SCORE_FILE = "./data/highScore";
         activeGame = true;
         player = new Player(HEIGHT / 2);
+        score = 0;
         obstaclesList = new ObstaclesList();
         obstaclesList.addObstacle();
         obstacleCounter = COUNTER;
@@ -58,10 +71,23 @@ public class Game {
     public static void update() {
         player.move();
         obstaclesList.update();
+        score += 10;
         if (checkCollision()) {
             activeGame = false;
         }
     }
+
+
+    public static void testScore() throws FileNotFoundException, UnsupportedEncodingException {
+        if (score > Integer.parseInt(highScore)) {
+            saveScore = new SaveScore(new File(SCORE_FILE));
+            newHighScore = new SaveScore.Score(Integer.toString(score));
+            saveScore.write(newHighScore);
+            saveScore.close();
+            highScore = Integer.toString(score);
+        }
+    }
+
 
 
 }

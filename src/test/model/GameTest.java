@@ -2,6 +2,13 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.LoadScore;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
@@ -9,6 +16,8 @@ class GameTest {
     @BeforeEach
     void runBefore() {
         testGame.createNewGame();
+        testGame.highScore = "1000";
+        testGame.SCORE_FILE = "./data/testScores.txt";
     }
 
     @Test
@@ -53,6 +62,16 @@ class GameTest {
         assertTrue(testGame.obstaclesList.checkCollide(testPlayer));
         testGame.update();
         assertFalse(testGame.activeGame);
+    }
+
+
+    @Test
+    void testTestScore() throws FileNotFoundException, UnsupportedEncodingException {
+        testGame.score = 100;
+        testGame.testScore();
+        assertEquals(testGame.highScore, "1000");
+        testGame.score = 2000;
+        testGame.testScore();
     }
 
 }
