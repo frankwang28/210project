@@ -13,7 +13,8 @@ public class LoadScoreTest {
     @Test
     void testConstructor() {
         LoadScore loadScore = new LoadScore();
-        assertEquals(loadScore, loadScore);
+        LoadScore loadScoreOther = loadScore;
+        assertEquals(loadScoreOther, loadScore);
     }
 
     @Test
