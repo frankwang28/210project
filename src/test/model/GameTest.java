@@ -70,7 +70,7 @@ class GameTest {
         testGame.score = 100;
         testGame.testScore();
         assertEquals(testGame.highScore, "1000");
-        testGame.score = 2000;
+        testGame.score = 1500;
         testGame.testScore();
     }
 
