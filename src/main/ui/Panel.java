@@ -24,7 +24,8 @@ public class Panel extends JPanel {
     // Constructs main window
     // EFFECTS: sets up window in which the paddle ball game will be played
     Panel(Game g) {
-        setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+        setSize(Game.WIDTH, Game.HEIGHT);
+        setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT - 10)); // no clue why i need the - 10 wtf just visua
         setBackground(Color.GRAY);
         this.game = g;
     }

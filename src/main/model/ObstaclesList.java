@@ -17,7 +17,8 @@ public class ObstaclesList {
     // EFFECTS: adds an obstacle into the list
     public void addObstacle() {
         Obstacle temp = new Obstacle(Game.WIDTH,
-                ThreadLocalRandom.current().nextInt(5, Game.HEIGHT - 5));
+                ThreadLocalRandom.current()
+                .nextInt(Obstacle.height - 5, Game.HEIGHT - Obstacle.height + 5));
         obstacleList.add(temp);
     }
 
