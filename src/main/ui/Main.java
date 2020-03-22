@@ -29,6 +29,7 @@ public class Main extends JFrame {
         frame.addKeyListener(new Frame.KeyHandler());
         frame.pack();
         frame.setVisible(true);
+        frame.setResizable(false);
         frame.addTimer(game, panel);
     }
 

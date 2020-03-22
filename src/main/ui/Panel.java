@@ -7,6 +7,7 @@ import model.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ConcurrentModificationException;
 
 public class Panel extends JPanel {
 
@@ -34,11 +35,15 @@ public class Panel extends JPanel {
         if (!Game.activeGame && !GameUI.hasBeenStarted) {
             GameUI.loadScore();
             startScreen(g);
-        } else if (!Game.activeGame && GameUI.hasBeenStarted) {
+        } else if (!Game.activeGame) {
             endScreen(g);
         } else {
             super.paintComponent(g);
-            drawGame(g);
+            try {
+                drawGame(g);
+            } catch (ConcurrentModificationException e) {
+                int i = 0;
+            }
         }
     }
 
@@ -108,10 +113,10 @@ public class Panel extends JPanel {
         centreString(END, g, fm, Game.HEIGHT / 2);
         centreString(GameUI.highScoreMessage(), g, fm, Game.HEIGHT / 2 + 50);
         g.setColor(saved);
-        for (Obstacle obj: ObstaclesList.obstacleList) {
-            System.out.println(obj.posX);
-        }
-        System.out.println();
+//        for debugging
+//        for (Obstacle obj: ObstaclesList.obstacleList) {
+//            System.out.println(obj.posX);
+//        }
     }
 
     // Centres a string on the screen

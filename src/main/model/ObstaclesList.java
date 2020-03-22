@@ -1,12 +1,12 @@
 package model;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.*;
 
 // represents the list of obstacles active in the game
 public class ObstaclesList {
     public static List<Obstacle> obstacleList; // a list of the obstacles
-    private static final Random rnd = new Random();
 
     // creates a list of obstacles
     // EFFECTS: creates a list of obstacles
@@ -16,7 +16,8 @@ public class ObstaclesList {
 
     // EFFECTS: adds an obstacle into the list
     public void addObstacle() {
-        Obstacle temp = new Obstacle(Game.WIDTH, rnd.nextInt(Game.HEIGHT + 1));
+        Obstacle temp = new Obstacle(Game.WIDTH,
+                ThreadLocalRandom.current().nextInt(5, Game.HEIGHT - 5));
         obstacleList.add(temp);
     }
 
