@@ -11,9 +11,7 @@ public class Player {
     public int dy = 8;
 
     public int ypos;
-    public int moveDirection;
-
-    public static final Color COLOR = new Color(250, 222, 54);
+    public int moveDirection = 1;
 
     //creates a player
     // EFFECTS: places a player at (XPOS, y)

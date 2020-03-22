@@ -8,8 +8,6 @@ public class Obstacle {
     public static int width = 48;
     public static int dx = -8;
 
-    public static final Color COLOR = new Color(10, 50, 188);
-
     public int posX;
     public int posY;
     private int deltaX;
@@ -27,6 +25,12 @@ public class Obstacle {
     // EFFECTS: obstacle is moved by dx units
     public void moveObstacle() {
         posX = posX + deltaX;
+    }
+
+    // returns if the object is outisde of the screen
+    // EFFECTS: checks if the object is outside screen
+    public boolean checkOutside() {
+        return (posX < 0);
     }
 
 }

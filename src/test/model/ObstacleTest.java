@@ -28,7 +28,12 @@ public class ObstacleTest {
         assertEquals(testObstacle.posX, width + 3 * testObstacle.dx);
         testObstacle.moveObstacle();
         assertEquals(testObstacle.posX, width + 4 * testObstacle.dx);
+    }
 
-
+    @Test
+    void testCheckOutside() {
+        assertFalse(testObstacle.checkOutside());
+        testObstacle.posX = -1;
+        assertTrue(testObstacle.checkOutside());
     }
 }

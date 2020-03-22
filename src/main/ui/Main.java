@@ -20,6 +20,7 @@ public class Main extends JFrame {
     }
 
     private void start() {
+        GameUI.hasBeenStarted = false;
         Frame frame = new Frame();
         frame.setTitle("Dodger");
         game = new Game();

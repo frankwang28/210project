@@ -42,9 +42,15 @@ public class ObstaclesList {
 
     // EFFECTS: updates all of the obstacles in the list
     public void update() {
-        for (Obstacle obstacle : obstacleList) {
-            // obstacleList.get(i).checkAndDelete();
-            obstacle.moveObstacle();
+        List<Integer> temp = new ArrayList();
+        for (int i = 0; i < obstacleList.size(); i++) {
+            obstacleList.get(i).moveObstacle();
+            if (obstacleList.get(i).checkOutside()) {
+                temp.add(i);
+            }
+        }
+        for (int i: temp) {
+            obstacleList.remove(i);
         }
     }
 

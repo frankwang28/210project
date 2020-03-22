@@ -26,7 +26,7 @@ public class Game {
     public static ObstaclesList obstaclesList;  // the list of obstacles that are currently in the game
 
     public static int obstacleCounter;           // counts the amount of ticks before a new obstacle is created
-    public static final int COUNTER = 20;
+    public static final int COUNTER = 10;
 
 
 
@@ -67,8 +67,6 @@ public class Game {
         }
         player.move();
         obstaclesList.update();
-        score += 10;
-
     }
 
     public static void testScore() throws FileNotFoundException, UnsupportedEncodingException {
