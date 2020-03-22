@@ -2,7 +2,6 @@ package model;
 
 import java.util.Random;
 import java.util.*;
-import java.awt.geom.RectangularShape;
 
 // represents the list of obstacles active in the game
 public class ObstaclesList {
@@ -19,7 +18,6 @@ public class ObstaclesList {
     public void addObstacle() {
         Obstacle temp = new Obstacle(Game.WIDTH, rnd.nextInt(Game.HEIGHT + 1));
         obstacleList.add(temp);
-        System.out.println("Added an obstacle at " + temp.posX + " , " + temp.posY);
     }
 
     // EFFECTS: checks for collision of an obstacle and the player

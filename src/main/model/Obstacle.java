@@ -1,10 +1,14 @@
 package model;
 
+import java.awt.*;
+
 // represents an obstacle
 public class Obstacle {
     public static int height = 48;
     public static int width = 48;
-    public static int dx = -40;
+    public static int dx = -8;
+
+    public static final Color COLOR = new Color(10, 50, 188);
 
     public int posX;
     public int posY;
@@ -24,11 +28,5 @@ public class Obstacle {
     public void moveObstacle() {
         posX = posX + deltaX;
     }
-   /*
-    // EFFECTS: checks and deletes an obstacle that is behind the player
-    public void checkAndDelete() {
-
-    }
-   */
 
 }

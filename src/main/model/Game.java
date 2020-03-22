@@ -1,16 +1,11 @@
 package model;
 
-// import javax.swing.*;
-// import java.awt.event.ActionEvent;
-// import java.awt.event.ActionListener;
-import persistence.LoadScore;
+
 import persistence.SaveScore;
 import ui.GameUI;
 
 import java.io.*;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 // Represents a game having a boolean on whether the game is active, a player, and a list of obstacles
 public class Game {
@@ -24,16 +19,15 @@ public class Game {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
 
-    public static final int TICK = 1000; // game ticks ever 1000ms (currently)
+    public static final int TICK = 17; // game ticks ever 1000ms (currently)
 
     public static boolean activeGame = false;           // whether the game is active or not
     public static Player player;                // the object that the player controls
     public static ObstaclesList obstaclesList;  // the list of obstacles that are currently in the game
 
     public static int obstacleCounter;           // counts the amount of ticks before a new obstacle is created
-    public static final int COUNTER = 10;
+    public static final int COUNTER = 20;
 
-    static Timer timer;
 
 
     // EFFECTS: instantiates the game
@@ -54,7 +48,6 @@ public class Game {
         obstaclesList = new ObstaclesList();
         obstaclesList.addObstacle();
         obstacleCounter = COUNTER;
-        // timer(TICK);
         GameUI.one(TICK);
     }
 
@@ -69,14 +62,14 @@ public class Game {
     // MODIFIES: this
     // EFFECTS: updates the player and the obstacles
     public static void update() {
-        player.move();
-        obstaclesList.update();
-        score += 10;
         if (checkCollision()) {
             activeGame = false;
         }
-    }
+        player.move();
+        obstaclesList.update();
+        score += 10;
 
+    }
 
     public static void testScore() throws FileNotFoundException, UnsupportedEncodingException {
         if (score > Integer.parseInt(highScore)) {
@@ -88,6 +81,12 @@ public class Game {
         }
     }
 
+    public static Player getPlayer() {
+        return player;
+    }
 
+    public static ObstaclesList getObstacleList() {
+        return obstaclesList;
+    }
 
 }

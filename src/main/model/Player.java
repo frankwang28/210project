@@ -1,15 +1,19 @@
 package model;
 
+import java.awt.*;
+
 // represents that player
 public class Player {
     public static final int XPOS = 60;
 
     public int height = 60;
     public int width = 60;
-    public int dy = 24;
+    public int dy = 8;
 
     public int ypos;
     public int moveDirection;
+
+    public static final Color COLOR = new Color(250, 222, 54);
 
     //creates a player
     // EFFECTS: places a player at (XPOS, y)
