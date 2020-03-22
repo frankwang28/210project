@@ -17,3 +17,12 @@ creating a game would be interesting insight into the process in creating such g
 - As a user, I want to be able to lose upon colliding with an obstacle.
 - As a user, I want to be able to have my high score automatically saved upon losing.
 - As a user, I want to be able to see my high score at the start of games. 
+
+#### Instructions for Grader
+- You can generate the first required event by using the up and down keys once the game has begun.
+- You can generate the second required event by playing the game.
+- You can generate the third event by entering 'S' once the GUI has loaded.
+- You can generate the fourth event by colliding with an obstacle. 
+- You can locate the visual component when running the game.
+- You can see the save state of my application through the saving of new high scores. 
+- You can see the load state of my application through the loading of high scores. 
