@@ -88,11 +88,13 @@ public class GameUI extends JPanel {
         @Override
         public void run() {
 
+            Game.setCounter();
             Game.obstacleCounter--;
             if (Game.obstacleCounter == 0) {
                 Game.obstaclesList.addObstacle();
                 Game.obstacleCounter = Game.COUNTER;
                 Game.score += 10;
+                System.out.println(Game.COUNTER);
             }
             if (!Game.activeGame) {
                 try {

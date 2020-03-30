@@ -8,7 +8,7 @@ public class Player {
 
     public int height = 60;
     public int width = 60;
-    public int dy = 8;
+    public int dy = 4;
 
     public int ypos;
     public int moveDirection = 1;

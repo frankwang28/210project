@@ -19,14 +19,14 @@ public class Game {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
 
-    public static final int TICK = 17; // game ticks ever 1000ms (currently)
+    public static final int TICK = 15; // game ticks ever 1000 / 15 ms
 
     public static boolean activeGame = false;           // whether the game is active or not
     public static Player player;                // the object that the player controls
     public static ObstaclesList obstaclesList;  // the list of obstacles that are currently in the game
 
     public static int obstacleCounter;           // counts the amount of ticks before a new obstacle is created
-    public static final int COUNTER = 10;
+    public static int COUNTER;
 
 
 
@@ -35,11 +35,17 @@ public class Game {
         activeGame = false;
     }
 
+    public static int setCounter() {
+        COUNTER = 18 - (score / 250);
+        if (COUNTER < 6) {
+            COUNTER = 6;
+        }
+        return COUNTER;
+    }
 
     // Resets everything in the game
     // MODIFIES: this
     // EFFECTS: resets the game to a state where there is only the player and an obstacle
-
     public static void createNewGame() {
         SCORE_FILE = "./data/highScore";
         activeGame = true;
@@ -47,7 +53,7 @@ public class Game {
         score = 0;
         obstaclesList = new ObstaclesList();
         obstaclesList.addObstacle();
-        obstacleCounter = COUNTER;
+        obstacleCounter = setCounter();
         GameUI.one(TICK);
     }
 
@@ -81,10 +87,6 @@ public class Game {
 
     public static Player getPlayer() {
         return player;
-    }
-
-    public static ObstaclesList getObstacleList() {
-        return obstaclesList;
     }
 
 }

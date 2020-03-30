@@ -25,10 +25,18 @@ class GameTest {
         testGame = new Game();
         assertEquals(testGame.WIDTH, 1200);
         assertEquals(testGame.HEIGHT, 800);
-        assertEquals(testGame.TICK, 1000);
+        assertEquals(testGame.TICK, 15);
         assertEquals(testGame.COUNTER, Game.COUNTER);
         assertFalse(testGame.activeGame);
 
+    }
+
+    @Test
+    void testSetCounter() {
+        testGame.score = 0;
+        assertEquals(testGame.setCounter(), 18);
+        testGame.score = 100000;
+        assertEquals(testGame.setCounter(), 6);
     }
 
     @Test
@@ -45,7 +53,7 @@ class GameTest {
         testGame.obstaclesList.obstacleList.get(0).posY = 400;
         testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2;
         assertTrue(testGame.obstaclesList.checkCollide(testPlayer));
-        testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2 + Obstacle.width / 2 + 1;
+        testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2 + testGame.obstaclesList.obstacleList.get(0).width / 2 + 1;
         assertFalse(testGame.obstaclesList.checkCollide(testPlayer));
     }
 
@@ -72,6 +80,11 @@ class GameTest {
         assertEquals(testGame.highScore, "1000");
         testGame.score = 1500;
         testGame.testScore();
+    }
+
+    @Test
+    void testGetPlayer() {
+        assertEquals(testGame.getPlayer(), testGame.player);
     }
 
 }

@@ -14,7 +14,6 @@ public class Panel extends JPanel {
     private Game game;
 
     public static final Color PLAYER_COLOR = new Color(0, 220, 10);
-    public static final Color OBSTACLE1_COLOR = new Color(255, 40, 0);
 
     private static final String START = "Enter 'S' to start game! "
             + "Once started, use up and down arrow keys to change direction.";
@@ -53,7 +52,7 @@ public class Panel extends JPanel {
     // EFFECTS:  draws the game onto g
     public void drawGame(Graphics g) {
         drawPlayer(g);
-        drawObstacle(g);
+        drawListOfObstacles(g);
         drawScore(g);
     }
 
@@ -69,18 +68,22 @@ public class Panel extends JPanel {
         game.setColor(savedCol);
     }
 
+    // Draws the list of balls
+    // MODIFIES: g
+    // EFFECTS:  draws the entire list of balls onto g
+    public void drawListOfObstacles(Graphics g) {
+        for (Obstacle obstacle : ObstaclesList.obstacleList) {
+            g.setColor(obstacle.obstacleColor);
+            drawObstacle(obstacle, g);
+        }
+    }
+
     // Draw the ball
     // MODIFIES: g
     // EFFECTS:  draws the ball onto g
-    private void drawObstacle(Graphics g) {
-        ObstaclesList obstaclesList = Game.getObstacleList();
-        Color savedCol = g.getColor();
-        g.setColor(OBSTACLE1_COLOR);
-        for (Obstacle obstacle : ObstaclesList.obstacleList) {
-            g.fillRect(obstacle.posX - Obstacle.width / 2, obstacle.posY - Obstacle.height / 2,
-                    Obstacle.width, Obstacle.height);
-        }
-        g.setColor(savedCol);
+    private void drawObstacle(Obstacle o, Graphics g) {
+        g.fillRect(o.posX - o.width / 2, o.posY - o.height / 2,
+                    o.width, o.height);
     }
 
     // MODIFIES: g

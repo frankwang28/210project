@@ -16,19 +16,42 @@ public class ObstaclesList {
 
     // EFFECTS: adds an obstacle into the list
     public void addObstacle() {
-        Obstacle temp = new Obstacle(Game.WIDTH,
-                ThreadLocalRandom.current()
-                .nextInt(Obstacle.height - 5, Game.HEIGHT - Obstacle.height + 5));
+        Obstacle temp;
+        int obstacleLevel = setObstacleLevel(Math.ceil((double)(Game.score + 1) / (double)500));
+        int h = ThreadLocalRandom.current()
+                .nextInt(20, Game.HEIGHT - 20);
+        temp = new ObstacleLevel1(Game.WIDTH + 60, h);
+        switch (obstacleLevel) {
+            case 1:
+                temp = new ObstacleLevel1(Game.WIDTH + 60, h);
+                break;
+            case 2:
+                temp = new ObstacleLevel2(Game.WIDTH + 60, h);
+                break;
+            case 3:
+                temp = new ObstacleLevel3(Game.WIDTH + 60, h);
+                break;
+        }
         obstacleList.add(temp);
+    }
+
+    // EFFECTS: sets the obstacle level
+    public int setObstacleLevel(double scoreLevel) {
+        int obstacleLevel;
+        obstacleLevel = (int)scoreLevel;
+        if (scoreLevel > 3) {
+            obstacleLevel = 3;
+        }
+        return ThreadLocalRandom.current().nextInt(1, obstacleLevel + 1);
     }
 
     // EFFECTS: checks for collision of an obstacle and the player
     public static boolean checkCollide(Player player) {
         for (Obstacle obj : obstacleList) {
-            int top = obj.posY - Obstacle.height / 2;
-            int bot = obj.posY + Obstacle.height / 2;
-            int lef = obj.posX - Obstacle.width / 2;
-            int rig = obj.posX + Obstacle.width / 2;
+            int top = obj.posY - obj.height / 2;
+            int bot = obj.posY + obj.height / 2;
+            int lef = obj.posX - obj.width / 2;
+            int rig = obj.posX + obj.width / 2;
             int playerTop = player.ypos - player.height / 2;
             int playerBot = player.ypos + player.height / 2;
             int playerLef = Player.XPOS - player.width / 2;
@@ -45,10 +68,12 @@ public class ObstaclesList {
     // EFFECTS: updates all of the obstacles in the list
     public void update() {
         List<Integer> temp = new ArrayList();
+        int j = 0;
         for (int i = 0; i < obstacleList.size(); i++) {
             obstacleList.get(i).moveObstacle();
             if (obstacleList.get(i).checkOutside()) {
-                temp.add(i);
+                temp.add(i - j);
+                j++;
             }
         }
         for (int i: temp) {
