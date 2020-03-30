@@ -20,12 +20,12 @@ public class ObstacleLevel3 extends Obstacle {
 
     @Override
     public void setSpeed() {
-        if (this.posY > ((Game.HEIGHT / 2) + 100)) {
+        if (this.posY > Game.player.ypos) {
             dy = ThreadLocalRandom.current().nextInt(-2, 1);
-        } else if (this.posY < ((Game.HEIGHT / 2) - 100)) {
+        } else if (this.posY < Game.player.ypos) {
             dy = ThreadLocalRandom.current().nextInt(0, 3);
         } else {
-            dy = ThreadLocalRandom.current().nextInt(-2, 3);
+            dy = ThreadLocalRandom.current().nextInt(0, 1);
         }
         deltaX = dx;
         deltaY = dy;
@@ -36,9 +36,9 @@ public class ObstacleLevel3 extends Obstacle {
     // EFFECTS: obstacle is moved by dx units
     @Override
     public void moveObstacle() {
+        setSpeed();
         posX = posX + deltaX;
         posY = posY + deltaY;
-        setSpeed();
     }
 
     // returns if the object is outisde of the screen

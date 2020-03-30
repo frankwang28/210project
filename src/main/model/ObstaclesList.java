@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.*;
 
@@ -71,17 +70,11 @@ public class ObstaclesList {
 
     // EFFECTS: updates all of the obstacles in the list
     public void update() {
-        List<Integer> temp = new ArrayList();
-        int j = 0;
         for (int i = 0; i < obstacleList.size(); i++) {
             obstacleList.get(i).moveObstacle();
-            if (obstacleList.get(i).checkOutside()) {
-                temp.add(i - j);
-                j++;
-            }
         }
-        for (int i: temp) {
-            obstacleList.remove(i);
+        if (obstacleList.get(0).checkOutside()) {
+            obstacleList.remove(0);
         }
     }
 

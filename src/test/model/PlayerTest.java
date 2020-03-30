@@ -24,12 +24,12 @@ public class PlayerTest {
         assertEquals(testPlayer.ypos, 400);
         testPlayer.moveDirection = 1;
         testPlayer.move();
-        assertEquals(testPlayer.ypos, 400 + 24); // HEIGHT / 2 + dy
+        assertEquals(testPlayer.ypos, 400 + testPlayer.dy); // HEIGHT / 2 + dy
         testPlayer.moveDirection = -1;
         testPlayer.move();
         assertEquals(testPlayer.ypos, 400);
         testPlayer.move();
-        assertEquals(testPlayer.ypos, 400 - 24);
+        assertEquals(testPlayer.ypos, 400 - testPlayer.dy);
     }
 
     @Test

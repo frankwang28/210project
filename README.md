@@ -26,3 +26,12 @@ creating a game would be interesting insight into the process in creating such g
 - You can locate the visual component when running the game.
 - You can see the save state of my application through the saving of new high scores. 
 - You can see the load state of my application through the loading of high scores. 
+
+#### Phase 4: Task 2
+
+Implemented a type hierarchy.
+The classes that played a role are as follows:
+- Obstacle
+- ObstacleLevel1
+- ObstacleLevel2
+- ObstacleLevel3

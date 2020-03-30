@@ -66,7 +66,6 @@ public class ObstacleLevel3Test {
         assertEquals(testObstacle.posY, 400 + 1 * testObstacle.deltaY);
         testObstacle.moveObstacle();
         assertEquals(testObstacle.posX, width + 2 * testObstacle.deltaX);
-        assertEquals(testObstacle.posY, 400 + 2 * testObstacle.deltaY);
     }
 
     @Test

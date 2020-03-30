@@ -36,6 +36,8 @@ public class ObstaclesListTest {
         assertEquals(testObstacle.width, 50);
         testObstacle = testObstaclesList.switchLevel(3);
         assertEquals(testObstacle.width, 60);
+        testObstacle = testObstaclesList.switchLevel(4);
+        assertEquals(testObstacle.width, 40);
     }
 
     @Test
