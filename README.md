@@ -30,6 +30,7 @@ creating a game would be interesting insight into the process in creating such g
 #### Phase 4: Task 2
 
 Implemented a type hierarchy.
+
 The classes that played a role are as follows:
 - Obstacle
 - ObstacleLevel1
