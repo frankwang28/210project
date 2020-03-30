@@ -34,4 +34,6 @@ public abstract class Obstacle {
         return ((posX + 60) < 0);
     }
 
+    public abstract void setSpeed();
+
 }

@@ -14,6 +14,7 @@ public class ObstacleLevel1 extends Obstacle {
         setSpeed();
     }
 
+    @Override
     public void setSpeed() {
         deltaX = dx;
     }

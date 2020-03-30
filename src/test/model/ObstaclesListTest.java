@@ -28,6 +28,17 @@ public class ObstaclesListTest {
     }
 
     @Test
+    void testSwitchLevel() {
+        Obstacle testObstacle;
+        testObstacle = testObstaclesList.switchLevel(1);
+        assertEquals(testObstacle.width, 40);
+        testObstacle = testObstaclesList.switchLevel(2);
+        assertEquals(testObstacle.width, 50);
+        testObstacle = testObstaclesList.switchLevel(3);
+        assertEquals(testObstacle.width, 60);
+    }
+
+    @Test
     void testSetObstacleLevel() {
         assertEquals(testObstaclesList.setObstacleLevel(1), 1);
         boolean test = true;
@@ -37,6 +48,11 @@ public class ObstaclesListTest {
         assertFalse(test);
         test = true;
         if (testObstaclesList.setObstacleLevel(3) < 4) {
+            test = false;
+        }
+        assertFalse(test);
+        test = true;
+        if (testObstaclesList.setObstacleLevel(100) < 4) {
             test = false;
         }
         assertFalse(test);

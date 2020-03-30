@@ -18,10 +18,14 @@ public class ObstaclesList {
     public void addObstacle() {
         Obstacle temp;
         int obstacleLevel = setObstacleLevel(Math.ceil((double)(Game.score + 1) / (double)500));
-        int h = ThreadLocalRandom.current()
-                .nextInt(20, Game.HEIGHT - 20);
-        temp = new ObstacleLevel1(Game.WIDTH + 60, h);
-        switch (obstacleLevel) {
+        temp = switchLevel(obstacleLevel);
+        obstacleList.add(temp);
+    }
+
+    public Obstacle switchLevel(int a) {
+        int h = ThreadLocalRandom.current().nextInt(20, Game.HEIGHT - 20);
+        Obstacle temp = new ObstacleLevel1(Game.WIDTH + 60, h);
+        switch (a) {
             case 1:
                 temp = new ObstacleLevel1(Game.WIDTH + 60, h);
                 break;
@@ -32,7 +36,7 @@ public class ObstaclesList {
                 temp = new ObstacleLevel3(Game.WIDTH + 60, h);
                 break;
         }
-        obstacleList.add(temp);
+        return temp;
     }
 
     // EFFECTS: sets the obstacle level

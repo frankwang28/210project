@@ -74,5 +74,11 @@ public class ObstacleLevel3Test {
         assertFalse(testObstacle.checkOutside());
         testObstacle.posX = -61;
         assertTrue(testObstacle.checkOutside());
+        testObstacle.posX = 400;
+        assertFalse(testObstacle.checkOutside());
+        testObstacle.posY = -100;
+        assertTrue(testObstacle.checkOutside());
+        testObstacle.posY = 900;
+        assertTrue(testObstacle.checkOutside());
     }
 }

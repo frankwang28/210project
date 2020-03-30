@@ -12,20 +12,21 @@ public class ObstacleLevel3 extends Obstacle {
 
     public ObstacleLevel3(int x, int y) {
         super(x, y);
-        if (y > ((Game.HEIGHT / 2) + 100)) {
-            dy = ThreadLocalRandom.current().nextInt(-2, 1);
-        } else if (y < ((Game.HEIGHT / 2) - 100)) {
-            dy = ThreadLocalRandom.current().nextInt(0, 3);
-        } else {
-            dy = ThreadLocalRandom.current().nextInt(-2, 3);
-        }
         height = 60;
         width = 60;
         obstacleColor = new Color(255, 40, 0);
         setSpeed();
     }
 
+    @Override
     public void setSpeed() {
+        if (this.posY > ((Game.HEIGHT / 2) + 100)) {
+            dy = ThreadLocalRandom.current().nextInt(-2, 1);
+        } else if (this.posY < ((Game.HEIGHT / 2) - 100)) {
+            dy = ThreadLocalRandom.current().nextInt(0, 3);
+        } else {
+            dy = ThreadLocalRandom.current().nextInt(-2, 3);
+        }
         deltaX = dx;
         deltaY = dy;
     }
@@ -37,6 +38,7 @@ public class ObstacleLevel3 extends Obstacle {
     public void moveObstacle() {
         posX = posX + deltaX;
         posY = posY + deltaY;
+        setSpeed();
     }
 
     // returns if the object is outisde of the screen

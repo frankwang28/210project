@@ -64,6 +64,8 @@ class GameTest {
         testGame.player.move();
         assertEquals(testGame.player.ypos, 400);
         Player testPlayer = new Player(400);
+        testGame.update();
+        assertTrue(testGame.activeGame);
         testGame.obstaclesList.addObstacle();
         testGame.obstaclesList.obstacleList.get(0).posY = 400;
         testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2;

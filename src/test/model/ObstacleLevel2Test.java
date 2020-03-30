@@ -8,7 +8,7 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ObstacleLevel2Test {
-    private Obstacle testObstacle;
+    private ObstacleLevel2 testObstacle;
     @BeforeEach
     void runBefore() {
         testObstacle = new ObstacleLevel2(Game.WIDTH, 400);
@@ -25,11 +25,36 @@ public class ObstacleLevel2Test {
     }
 
     @Test
+    void testDeltaY() {
+        boolean temp = true;
+        if (testObstacle.deltaY > 1 || testObstacle.deltaY < -1) {
+            temp = false;
+        }
+        assertTrue(temp);
+        testObstacle = new ObstacleLevel2(Game.WIDTH, 0);
+        if (testObstacle.deltaY > 1 || testObstacle.deltaY < 0) {
+            temp = false;
+        }
+        assertTrue(temp);
+        testObstacle = new ObstacleLevel2(Game.WIDTH, 800);
+        if (testObstacle.deltaY > 0 || testObstacle.deltaY < -1) {
+            temp = false;
+        }
+        assertTrue(temp);
+    }
+
+    @Test
     void testSetSpeed() {
         testObstacle.deltaX = 0;
         assertEquals(testObstacle.deltaX, 0);
         testObstacle = new ObstacleLevel2(Game.WIDTH, 400);
+        boolean temp = true;
+        if (testObstacle.deltaY > 1 || testObstacle.deltaY < -1) {
+            temp = false;
+        }
+        assertTrue(temp);
         assertEquals(testObstacle.deltaX, -6);
+
     }
 
     @Test
@@ -37,18 +62,23 @@ public class ObstacleLevel2Test {
         int width = Game.WIDTH;
         testObstacle.moveObstacle();
         assertEquals(testObstacle.posX, width + 1 * testObstacle.deltaX);
+        assertEquals(testObstacle.posY, 400 + 1 * testObstacle.deltaY);
         testObstacle.moveObstacle();
         assertEquals(testObstacle.posX, width + 2 * testObstacle.deltaX);
-        testObstacle.moveObstacle();
-        assertEquals(testObstacle.posX, width + 3 * testObstacle.deltaX);
-        testObstacle.moveObstacle();
-        assertEquals(testObstacle.posX, width + 4 * testObstacle.deltaX);
+        assertEquals(testObstacle.posY, 400 + 2 * testObstacle.deltaY);
+
     }
 
     @Test
     void testCheckOutside() {
         assertFalse(testObstacle.checkOutside());
         testObstacle.posX = -61;
+        assertTrue(testObstacle.checkOutside());
+        testObstacle.posX = 400;
+        assertFalse(testObstacle.checkOutside());
+        testObstacle.posY = -100;
+        assertTrue(testObstacle.checkOutside());
+        testObstacle.posY = 900;
         assertTrue(testObstacle.checkOutside());
     }
 }

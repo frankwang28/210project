@@ -94,7 +94,6 @@ public class GameUI extends JPanel {
                 Game.obstaclesList.addObstacle();
                 Game.obstacleCounter = Game.COUNTER;
                 Game.score += 10;
-                System.out.println(Game.COUNTER);
             }
             if (!Game.activeGame) {
                 try {
