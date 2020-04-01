@@ -90,4 +90,10 @@ class GameTest {
         assertEquals(testGame.getPlayer(), testGame.player);
     }
 
+    @Test
+    void testGetScore() {
+        testGame.score = 100;
+        assertEquals(testGame.getScore(), 100);
+    }
+
 }
