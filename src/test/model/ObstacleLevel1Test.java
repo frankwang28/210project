@@ -47,8 +47,8 @@ public class ObstacleLevel1Test {
 
     @Test
     void testCheckOutside() {
-        assertFalse(testObstacle.checkOutside());
+        assertFalse(testObstacle.checkOutside(Game.HEIGHT));
         testObstacle.posX = -61;
-        assertTrue(testObstacle.checkOutside());
+        assertTrue(testObstacle.checkOutside(Game.HEIGHT));
     }
 }

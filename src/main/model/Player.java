@@ -22,9 +22,9 @@ public class Player {
     // makes sure the player is still in bounds
     // MODIFIES: this
     // EFFECTS: keeps the player within the boundaries of the game
-    public void stayInBounds() {
-        if ((ypos + height / 2) > Game.HEIGHT) {
-            ypos = (Game.HEIGHT - height / 2);
+    public void stayInBounds(int h) {
+        if ((ypos + height / 2) > h) {
+            ypos = (h - height / 2);
         } else if ((ypos - height / 2) < 0) {
             ypos = (height / 2);
         }
@@ -33,9 +33,9 @@ public class Player {
     // moves the player up, down, or not at all
     // MODIFIES: this
     // EFFECTS: moves the player in the direction
-    public void move() {
+    public void move(int h) {
         this.ypos += (dy * moveDirection);
-        stayInBounds();
+        stayInBounds(h);
     }
 
 }

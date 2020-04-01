@@ -36,3 +36,11 @@ The classes that played a role are as follows:
 - ObstacleLevel1
 - ObstacleLevel2
 - ObstacleLevel3
+
+#### Phase 4: Task 3
+
+- Improved cohesion by making the function in Game of checking for collision into a separate class: CollisionChecker. 
+- Improved cohesion by making splitting the function in ObstaclesList of determining the level of the obstacles into a separate class: ObstacleListManager. 
+- Reduced coupling in the Obstacle class and its subclasses by no longer referring to the Game class to get the height.
+- Reduced coupling in the Player class by no longer referring to the Game class to get the height.  
+- Reduced coupling in the Game class by no longer referring to the Game class to get the height and width.  

@@ -30,10 +30,11 @@ public abstract class Obstacle {
 
     // returns if the object is outside of the screen
     // EFFECTS: checks if the object is outside screen
-    public boolean checkOutside() {
+    public boolean checkOutside(int h) {
         return ((posX + 60) < 0);
     }
 
+    // EFFECTS: sets the speed of the obstacle
     public abstract void setSpeed();
 
 }

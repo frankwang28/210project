@@ -71,14 +71,14 @@ public class ObstacleLevel2Test {
 
     @Test
     void testCheckOutside() {
-        assertFalse(testObstacle.checkOutside());
+        assertFalse(testObstacle.checkOutside(Game.HEIGHT));
         testObstacle.posX = -61;
-        assertTrue(testObstacle.checkOutside());
+        assertTrue(testObstacle.checkOutside(Game.HEIGHT));
         testObstacle.posX = 400;
-        assertFalse(testObstacle.checkOutside());
+        assertFalse(testObstacle.checkOutside(Game.HEIGHT));
         testObstacle.posY = -100;
-        assertTrue(testObstacle.checkOutside());
+        assertTrue(testObstacle.checkOutside(Game.HEIGHT));
         testObstacle.posY = 900;
-        assertTrue(testObstacle.checkOutside());
+        assertTrue(testObstacle.checkOutside(Game.HEIGHT));
     }
 }

@@ -24,18 +24,18 @@ public class Panel extends JPanel {
     // EFFECTS: sets up window in which the paddle ball game will be played
     Panel(Game g) {
         setSize(Game.WIDTH, Game.HEIGHT);
-        setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT - 10)); // no clue why i need the - 10 wtf just visua
+        setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT - 10)); // no clue why i need the - 10 wtf just visual
         setBackground(Color.GRAY);
         this.game = g;
     }
 
-    /// !!! change this !!!
+
     @Override
     protected void paintComponent(Graphics g) {
-        if (!Game.activeGame && !GameUI.hasBeenStarted) {
+        if (!game.activeGame && !GameUI.hasBeenStarted) {
             GameUI.loadScore();
             startScreen(g);
-        } else if (!Game.activeGame) {
+        } else if (!game.activeGame) {
             endScreen(g);
         } else {
             super.paintComponent(g);
@@ -60,7 +60,7 @@ public class Panel extends JPanel {
     // MODIFIES: game
     // EFFECTS:  draws the tank onto game
     private void drawPlayer(Graphics game) {
-        Player player = Game.getPlayer();
+        Player player = this.game.getPlayer();
         Color savedCol = game.getColor();
         game.setColor(PLAYER_COLOR);
         game.fillRect(Player.XPOS - player.width / 2, player.ypos - player.height / 2,
@@ -92,19 +92,26 @@ public class Panel extends JPanel {
         g.setColor(new Color(0, 0, 0));
         g.setFont(new Font("Arial", 20, 20));
         FontMetrics fm = g.getFontMetrics();
-        g.drawString("Score: " + Game.score, (Game.WIDTH - 160), 60);
+        g.drawString("Score: " + game.score, (Game.WIDTH - 160), 60);
+    }
+
+    // EFFECTS: returns a high score message
+    public String highScoreMessage() {
+        if (game.score > Integer.parseInt(Game.highScore)) {
+            return "High Score: " + game.score;
+        }
+        return "High Score: " + Game.highScore;
     }
 
     // MODIFIES: g
     // EFFECTS:  shows the starting messages
     public void startScreen(Graphics g) {
-        game = new Game();
         Color saved = g.getColor();
         g.setColor(new Color(0, 0, 0));
         g.setFont(new Font("Arial", 20, 20));
         FontMetrics fm = g.getFontMetrics();
         centreString(START, g, fm, Game.HEIGHT / 2);
-        centreString(GameUI.highScoreMessage(), g, fm, Game.HEIGHT / 2 + 50);
+        centreString(highScoreMessage(), g, fm, Game.HEIGHT / 2 + 50);
         g.setColor(saved);
     }
 
@@ -115,7 +122,7 @@ public class Panel extends JPanel {
         g.setFont(new Font("Arial", 20, 20));
         FontMetrics fm = g.getFontMetrics();
         centreString(END, g, fm, Game.HEIGHT / 2);
-        centreString(GameUI.highScoreMessage(), g, fm, Game.HEIGHT / 2 + 50);
+        centreString(highScoreMessage(), g, fm, Game.HEIGHT / 2 + 50);
         g.setColor(saved);
 //        for debugging
 //        for (Obstacle obj: ObstaclesList.obstacleList) {

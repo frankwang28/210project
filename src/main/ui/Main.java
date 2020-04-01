@@ -14,6 +14,7 @@ public class Main extends JFrame {
 
     public static Game game;
     private Panel panel;
+    public static GameUI gameUi;
 
     public static void main(String[] args) {
         new Main().start();
@@ -26,6 +27,8 @@ public class Main extends JFrame {
         game = new Game();
         panel = new Panel(game);
         frame.add(panel);
+        gameUi = new GameUI(game);
+        frame.makeKeyHandler(gameUi);
         frame.addKeyListener(new Frame.KeyHandler());
         frame.pack();
         frame.setVisible(true);

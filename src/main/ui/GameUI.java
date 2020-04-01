@@ -21,8 +21,7 @@ import java.util.TimerTask;
 public class GameUI extends JPanel {
 
     static Timer one;
-    private static String command;
-    private static Game game;
+    private Game game;
     private Panel panel;
 
     public static boolean hasBeenStarted = false;
@@ -30,10 +29,11 @@ public class GameUI extends JPanel {
     // Constructs a game panel
     // EFFECTS:  sets size and background colour of panel,
     //  updates this with the game to be displayed
-    GameUI() {
-        game = new Game();
+    GameUI(Game g) {
+        game = g;
         panel = new Panel(game);
         add(panel);
+        loadScore();
     }
 
     // Responds to key press codes
@@ -54,53 +54,42 @@ public class GameUI extends JPanel {
     // EFFECTS: changes direction of paddle in response to key code
     private void playerControl(int kcode) {
         if (kcode == KeyEvent.VK_KP_UP || kcode == KeyEvent.VK_UP) {
-            Game.player.moveDirection = -1;
+            game.player.moveDirection = -1;
         } else if (kcode == KeyEvent.VK_KP_DOWN || kcode == KeyEvent.VK_DOWN) {
-            Game.player.moveDirection = 1;
+            game.player.moveDirection = 1;
         }
-    }
-
-    // EFFECTS: returns a high score message
-    public static String highScoreMessage() {
-        String temp;
-        if (Game.score > Integer.parseInt(Game.highScore)) {
-            return "High Score: " + Game.score;
-        }
-        return "High Score: " + Game.highScore;
     }
 
     // MODIFIES: this
     // EFFECTS: processes start and user input
-    public static void start() {
+    public void start() {
         game.createNewGame();
+        one(Game.TICK);
     }
 
     // creates a timer that calls update every time
     // EFFECTS: initialises a timer that updates game each TICK
 
-    public static void one(int i) {
+    public void one(int i) {
         one = new Timer();
         one.schedule(new OneTask(),0, i);
     }
 
     // is the task that is called within the timer
-    static class OneTask extends TimerTask {
+    class OneTask extends TimerTask {
         @Override
         public void run() {
-
-            Game.setCounter();
-            Game.obstacleCounter--;
-            if (Game.obstacleCounter == 0) {
-                Game.obstaclesList.addObstacle();
-                Game.obstacleCounter = Game.COUNTER;
-                Game.score += 10;
+            game.setCounter();
+            game.obstacleCounter--;
+            if (game.obstacleCounter == 0) {
+                game.obstaclesList.addObstacle(game.score);
+                game.obstacleCounter = game.counter;
+                game.score += 10;
             }
-            if (!Game.activeGame) {
+            if (!game.activeGame) {
                 try {
-                    Game.testScore();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
+                    game.testScore();
+                } catch (FileNotFoundException | UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
                 one.cancel();

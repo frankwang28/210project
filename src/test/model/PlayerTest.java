@@ -20,28 +20,28 @@ public class PlayerTest {
     @Test
     void testMove() {
         testPlayer.moveDirection = 0;
-        testPlayer.move();
+        testPlayer.move(Game.HEIGHT);
         assertEquals(testPlayer.ypos, 400);
         testPlayer.moveDirection = 1;
-        testPlayer.move();
+        testPlayer.move(Game.HEIGHT);
         assertEquals(testPlayer.ypos, 400 + testPlayer.dy); // HEIGHT / 2 + dy
         testPlayer.moveDirection = -1;
-        testPlayer.move();
+        testPlayer.move(Game.HEIGHT);
         assertEquals(testPlayer.ypos, 400);
-        testPlayer.move();
+        testPlayer.move(Game.HEIGHT);
         assertEquals(testPlayer.ypos, 400 - testPlayer.dy);
     }
 
     @Test
     void testStayInBounds() {
         testPlayer.ypos = 0;
-        testPlayer.stayInBounds();
+        testPlayer.stayInBounds(Game.HEIGHT);
         assertEquals(testPlayer.ypos, testPlayer.height / 2);
         testPlayer.ypos = 1234;
-        testPlayer.stayInBounds();
+        testPlayer.stayInBounds(Game.HEIGHT);
         assertEquals(testPlayer.ypos, Game.HEIGHT - testPlayer.height / 2);
         testPlayer.ypos = 420;
-        testPlayer.stayInBounds();
+        testPlayer.stayInBounds(Game.HEIGHT);
         assertEquals(testPlayer.ypos, 420);
     }
 

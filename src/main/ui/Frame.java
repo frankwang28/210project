@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 public class Frame extends JFrame {
 
     private static final int INTERVAL = 17;
+    private static GameUI gameUI;
 
     // Set up timer
     // MODIFIES: none
@@ -29,16 +30,21 @@ public class Frame extends JFrame {
         t.start();
     }
 
+    public void makeKeyHandler(GameUI gui) {
+        gameUI = gui;
+    }
+
     /*
      * A key handler to respond to key events
      */
     public static class KeyHandler extends KeyAdapter {
-        GameUI gameUI = new GameUI();
 
         @Override
         public void keyPressed(KeyEvent e) {
             gameUI.keyPressed(e.getKeyCode());
         }
     }
+
+
 
 }

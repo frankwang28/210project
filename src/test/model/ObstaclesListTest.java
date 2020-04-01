@@ -8,7 +8,7 @@ public class ObstaclesListTest {
     private ObstaclesList testObstaclesList;
     @BeforeEach
     void runBefore() {
-        testObstaclesList = new ObstaclesList();
+        testObstaclesList = new ObstaclesList(Game.HEIGHT, Game.WIDTH);
     }
 
     @Test
@@ -18,86 +18,22 @@ public class ObstaclesListTest {
 
     @Test
     void testAddObstacle() {
-        testObstaclesList.addObstacle();
+        testObstaclesList.addObstacle(0);
         assertEquals(testObstaclesList.obstacleList.size(), 1);
         assertEquals(testObstaclesList.obstacleList.get(0).posX, Game.WIDTH + 60);
-        testObstaclesList.addObstacle();
+        testObstaclesList.addObstacle(0);
         assertEquals(testObstaclesList.obstacleList.size(), 2);
         assertEquals(testObstaclesList.obstacleList.get(1).posX, Game.WIDTH + 60);
-        testObstaclesList.addObstacle();
+        testObstaclesList.addObstacle(0);
     }
 
-    @Test
-    void testSwitchLevel() {
-        Obstacle testObstacle;
-        testObstacle = testObstaclesList.switchLevel(1);
-        assertEquals(testObstacle.width, 40);
-        testObstacle = testObstaclesList.switchLevel(2);
-        assertEquals(testObstacle.width, 50);
-        testObstacle = testObstaclesList.switchLevel(3);
-        assertEquals(testObstacle.width, 60);
-        testObstacle = testObstaclesList.switchLevel(4);
-        assertEquals(testObstacle.width, 40);
-    }
 
-    @Test
-    void testSetObstacleLevel() {
-        assertEquals(testObstaclesList.setObstacleLevel(1), 1);
-        boolean test = true;
-        if (testObstaclesList.setObstacleLevel(2) < 3) {
-            test = false;
-        }
-        assertFalse(test);
-        test = true;
-        if (testObstaclesList.setObstacleLevel(3) < 4) {
-            test = false;
-        }
-        assertFalse(test);
-        test = true;
-        if (testObstaclesList.setObstacleLevel(100) < 4) {
-            test = false;
-        }
-        assertFalse(test);
-    }
-
-    @Test
-    void testCheckCollide() {
-        Player testPlayer = new Player(400);
-        testObstaclesList.addObstacle();
-        testObstaclesList.obstacleList.get(0).posY = 400;
-        testObstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2;
-        assertTrue(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2 + testObstaclesList.obstacleList.get(0).width / 2 + 1;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2 + testObstaclesList.obstacleList.get(0).width / 2;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2 + testObstaclesList.obstacleList.get(0).width / 2 - 1;
-        assertTrue(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posX = Player.XPOS - testPlayer.width / 2 - testObstaclesList.obstacleList.get(0).width / 2 - 1;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posX = Player.XPOS - testPlayer.width / 2 - testObstaclesList.obstacleList.get(0).width / 2;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posX = Player.XPOS - testPlayer.width / 2 - testObstaclesList.obstacleList.get(0).width / 2 + 1;
-        assertTrue(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posY = testPlayer.ypos + testPlayer.height / 2 + testObstaclesList.obstacleList.get(0).height / 2 + 1;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posY = testPlayer.ypos + testPlayer.height / 2 + testObstaclesList.obstacleList.get(0).height / 2;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posY = testPlayer.ypos + testPlayer.height / 2 + testObstaclesList.obstacleList.get(0).height / 2 - 1;
-        assertTrue(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posY = testPlayer.ypos - testPlayer.height / 2 - testObstaclesList.obstacleList.get(0).height / 2 - 1;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posY = testPlayer.ypos - testPlayer.height / 2 - testObstaclesList.obstacleList.get(0).height / 2;
-        assertFalse(testObstaclesList.checkCollide(testPlayer));
-        testObstaclesList.obstacleList.get(0).posY = testPlayer.ypos - testPlayer.height / 2 - testObstaclesList.obstacleList.get(0).height / 2 + 1;
-        assertTrue(testObstaclesList.checkCollide(testPlayer));
-    }
 
     @Test
     void testUpdate() {
-        testObstaclesList.addObstacle();
-        testObstaclesList.addObstacle();
-        testObstaclesList.addObstacle();
+        testObstaclesList.addObstacle(0);
+        testObstaclesList.addObstacle(0);
+        testObstaclesList.addObstacle(0);
         ObstaclesList.obstacleList.get(0).posY = 123;
         ObstaclesList.obstacleList.get(0).posX = -100;
         ObstaclesList.obstacleList.get(1).posY = 400;

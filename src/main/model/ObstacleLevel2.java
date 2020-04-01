@@ -15,9 +15,9 @@ public class ObstacleLevel2 extends Obstacle {
         height = 50;
         width = 50;
         obstacleColor = new Color(255, 180, 10);
-        if (y > ((Game.HEIGHT / 2) + 200)) {
+        if (y > ((Game.HEIGHT / 2) + 150)) {
             dy = ThreadLocalRandom.current().nextInt(-1, 1);
-        } else if (y < ((Game.HEIGHT / 2) - 200)) {
+        } else if (y < ((Game.HEIGHT / 2) - 150)) {
             dy = ThreadLocalRandom.current().nextInt(0, 2);
         } else {
             dy = ThreadLocalRandom.current().nextInt(-1, 2);
@@ -43,7 +43,7 @@ public class ObstacleLevel2 extends Obstacle {
     // returns if the object is outisde of the screen
     // EFFECTS: checks if the object is outside screen
     @Override
-    public boolean checkOutside() {
-        return (posX < 0 || posY + height > Game.HEIGHT || posY + height < 0);
+    public boolean checkOutside(int h) {
+        return (posX < 0 || posY + height > h || posY + height < 0);
     }
 }

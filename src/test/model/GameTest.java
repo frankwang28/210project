@@ -13,8 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
     private Game testGame;
+
     @BeforeEach
     void runBefore() {
+        testGame = new Game();
         testGame.createNewGame();
         testGame.highScore = "1000";
         testGame.SCORE_FILE = "./data/testScores.txt";
@@ -26,7 +28,6 @@ class GameTest {
         assertEquals(testGame.WIDTH, 1200);
         assertEquals(testGame.HEIGHT, 800);
         assertEquals(testGame.TICK, 15);
-        assertEquals(testGame.COUNTER, Game.COUNTER);
         assertFalse(testGame.activeGame);
 
     }
@@ -49,27 +50,27 @@ class GameTest {
     @Test
     void testCheckCollision() {
         Player testPlayer = new Player(400);
-        testGame.obstaclesList.addObstacle();
+        testGame.obstaclesList.addObstacle(testGame.score);
         testGame.obstaclesList.obstacleList.get(0).posY = 400;
         testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2;
-        assertTrue(testGame.obstaclesList.checkCollide(testPlayer));
+        assertTrue(testGame.checkCollision());
         testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2 + testGame.obstaclesList.obstacleList.get(0).width / 2 + 1;
-        assertFalse(testGame.obstaclesList.checkCollide(testPlayer));
+        assertFalse(testGame.checkCollision());
     }
 
     @Test
     void testUpdate() {
         testGame.createNewGame();
         testGame.player.moveDirection = 0;
-        testGame.player.move();
+        testGame.player.move(testGame.HEIGHT);
         assertEquals(testGame.player.ypos, 400);
         Player testPlayer = new Player(400);
         testGame.update();
         assertTrue(testGame.activeGame);
-        testGame.obstaclesList.addObstacle();
+        testGame.obstaclesList.addObstacle(testGame.score);
         testGame.obstaclesList.obstacleList.get(0).posY = 400;
         testGame.obstaclesList.obstacleList.get(0).posX = Player.XPOS + testPlayer.width / 2;
-        assertTrue(testGame.obstaclesList.checkCollide(testPlayer));
+        assertTrue(testGame.checkCollision());
         testGame.update();
         assertFalse(testGame.activeGame);
     }
