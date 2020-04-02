@@ -2,8 +2,6 @@ package model;
 
 
 import persistence.SaveScore;
-import ui.GameUI;
-
 import java.io.*;
 
 import static java.lang.Integer.parseInt;
@@ -23,7 +21,7 @@ public class Game {
 
     public static int TICK = 15; // game ticks ever 1000 / 15 ms
 
-    public boolean activeGame = false;           // whether the game is active or not
+    public boolean activeGame;           // whether the game is active or not
     public Player player;                // the object that the player controls
     public ObstaclesList obstaclesList;  // the list of obstacles that are currently in the game
 

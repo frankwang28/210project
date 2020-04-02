@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 
-import java.security.Key;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,7 +21,6 @@ public class GameUI extends JPanel {
 
     static Timer one;
     private Game game;
-    private Panel panel;
 
     public static boolean hasBeenStarted = false;
 
@@ -31,7 +29,7 @@ public class GameUI extends JPanel {
     //  updates this with the game to be displayed
     GameUI(Game g) {
         game = g;
-        panel = new Panel(game);
+        Panel panel = new Panel(game);
         add(panel);
         loadScore();
     }

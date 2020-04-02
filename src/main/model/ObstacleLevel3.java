@@ -15,18 +15,18 @@ public class ObstacleLevel3 extends Obstacle {
         height = 60;
         width = 60;
         obstacleColor = new Color(255, 40, 0);
-        if (y > ((Game.HEIGHT / 2) + 200)) {
-            dy = ThreadLocalRandom.current().nextInt(-2, 1);
-        } else if (y < ((Game.HEIGHT / 2) - 200)) {
-            dy = ThreadLocalRandom.current().nextInt(0, 3);
-        } else {
-            dy = ThreadLocalRandom.current().nextInt(0, 1);
-        }
         setSpeed();
     }
 
     @Override
     public void setSpeed() {
+        if (posY > ((Game.HEIGHT / 2) + 200)) {
+            dy = ThreadLocalRandom.current().nextInt(-2, 1);
+        } else if (posY < ((Game.HEIGHT / 2) - 200)) {
+            dy = ThreadLocalRandom.current().nextInt(0, 3);
+        } else {
+            dy = ThreadLocalRandom.current().nextInt(0, 1);
+        }
         deltaX = dx;
         deltaY = dy;
     }

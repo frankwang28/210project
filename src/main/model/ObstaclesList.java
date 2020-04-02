@@ -1,15 +1,14 @@
 package model;
 
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.*;
 
 // represents the list of obstacles active in the game
 public class ObstaclesList {
-    public static List<Obstacle> obstacleList; // a list of the obstacles
+    public List<Obstacle> obstacleList; // a list of the obstacles
     private int gameHeight;
     private int gameWidth;
-    private Obstacle temp;
 
+    private Obstacle temp;
     private ObstacleListManager obstacleListManager;
 
     // creates a list of obstacles

@@ -13,7 +13,7 @@ public class ObstaclesListTest {
 
     @Test
     void testConstructor() {
-        assertEquals(ObstaclesList.obstacleList.size(), 0);
+        assertEquals(testObstaclesList.obstacleList.size(), 0);
     }
 
     @Test
@@ -34,16 +34,16 @@ public class ObstaclesListTest {
         testObstaclesList.addObstacle(0);
         testObstaclesList.addObstacle(0);
         testObstaclesList.addObstacle(0);
-        ObstaclesList.obstacleList.get(0).posY = 123;
-        ObstaclesList.obstacleList.get(0).posX = -100;
-        ObstaclesList.obstacleList.get(1).posY = 400;
-        ObstaclesList.obstacleList.get(1).posX = 200;
-        ObstaclesList.obstacleList.get(2).posY = 500;
-        ObstaclesList.obstacleList.get(2).posX = 300;
+        testObstaclesList.obstacleList.get(0).posY = 123;
+        testObstaclesList.obstacleList.get(0).posX = -100;
+        testObstaclesList.obstacleList.get(1).posY = 400;
+        testObstaclesList.obstacleList.get(1).posX = 200;
+        testObstaclesList.obstacleList.get(2).posY = 500;
+        testObstaclesList.obstacleList.get(2).posX = 300;
         testObstaclesList.update();
-        assertEquals(ObstaclesList.obstacleList.get(0).posY, 400);
-        assertEquals(ObstaclesList.obstacleList.get(1).posY, 500);
-        assertEquals(ObstaclesList.obstacleList.get(0).posX, 200 + ObstaclesList.obstacleList.get(0).deltaX);
-        assertEquals(ObstaclesList.obstacleList.get(1).posX, 300 + ObstaclesList.obstacleList.get(0).deltaX);
+        assertEquals(testObstaclesList.obstacleList.get(0).posY, 400);
+        assertEquals(testObstaclesList.obstacleList.get(1).posY, 500);
+        assertEquals(testObstaclesList.obstacleList.get(0).posX, 200 + testObstaclesList.obstacleList.get(0).deltaX);
+        assertEquals(testObstaclesList.obstacleList.get(1).posX, 300 + testObstaclesList.obstacleList.get(0).deltaX);
     }
 }

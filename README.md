@@ -43,4 +43,6 @@ The classes that played a role are as follows:
 - Improved cohesion by making splitting the function in ObstaclesList of determining the level of the obstacles into a separate class: ObstacleListManager. 
 - Reduced coupling in the Obstacle class and its subclasses by no longer referring to the Game class to get the height.
 - Reduced coupling in the Player class by no longer referring to the Game class to get the height.  
-- Reduced coupling in the Game class by no longer referring to the Game class to get the height and width.  
+- Reduced coupling in the Game class by no longer referring to the Game class to get the height and width.
+
+Note for UML design: Dependencies are not shown (as it is not required). However, one dependency between GameUI and LoadScore is shown as that is the only relationship with LoadScore in the project.   

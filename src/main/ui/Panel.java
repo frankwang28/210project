@@ -2,7 +2,6 @@ package ui;
 
 import model.Game;
 import model.Obstacle;
-import model.ObstaclesList;
 import model.Player;
 
 import javax.swing.*;
@@ -42,7 +41,7 @@ public class Panel extends JPanel {
             try {
                 drawGame(g);
             } catch (ConcurrentModificationException e) {
-                int i = 0;
+                ;
             }
         }
     }
@@ -72,7 +71,7 @@ public class Panel extends JPanel {
     // MODIFIES: g
     // EFFECTS:  draws the entire list of balls onto g
     public void drawListOfObstacles(Graphics g) {
-        for (Obstacle obstacle : ObstaclesList.obstacleList) {
+        for (Obstacle obstacle : game.obstaclesList.obstacleList) {
             g.setColor(obstacle.obstacleColor);
             drawObstacle(obstacle, g);
         }
@@ -90,8 +89,7 @@ public class Panel extends JPanel {
     // EFFECTS:  shows the starting messages
     private void drawScore(Graphics g) {
         g.setColor(new Color(0, 0, 0));
-        g.setFont(new Font("Arial", 20, 20));
-        FontMetrics fm = g.getFontMetrics();
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
         g.drawString("Score: " + game.score, (Game.WIDTH - 160), 60);
     }
 
@@ -108,7 +106,7 @@ public class Panel extends JPanel {
     public void startScreen(Graphics g) {
         Color saved = g.getColor();
         g.setColor(new Color(0, 0, 0));
-        g.setFont(new Font("Arial", 20, 20));
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
         FontMetrics fm = g.getFontMetrics();
         centreString(START, g, fm, Game.HEIGHT / 2);
         centreString(highScoreMessage(), g, fm, Game.HEIGHT / 2 + 50);
@@ -119,7 +117,7 @@ public class Panel extends JPanel {
         System.out.println();
         Color saved = g.getColor();
         g.setColor(new Color(0, 0, 0));
-        g.setFont(new Font("Arial", 20, 20));
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
         FontMetrics fm = g.getFontMetrics();
         centreString(END, g, fm, Game.HEIGHT / 2);
         centreString(highScoreMessage(), g, fm, Game.HEIGHT / 2 + 50);

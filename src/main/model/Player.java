@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.*;
-
 // represents that player
 public class Player {
     public static final int XPOS = 60;

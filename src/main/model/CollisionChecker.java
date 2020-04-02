@@ -1,6 +1,7 @@
 package model;
 
 public class CollisionChecker {
+
     private Player player;
     private ObstaclesList obstaclesList;
 
